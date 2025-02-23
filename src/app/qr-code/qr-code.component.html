@@ -1,1 +1,20 @@
-<p>qr-code works!</p>
+<div class="qr-container">
+    <h1>QR Code Generator</h1>
+    
+    <div class="input-section">
+        <input [(ngModel)]="inputText" placeholder="Enter text to generate QR code" />
+        <button (click)="generateQRCode()">Generate QR Code</button>
+        <button (click)="downloadQRCode()" [disabled]="!qrCodeDataUrl">Download QR Code</button>
+        <canvas #qrCanvas></canvas>
+        <div *ngIf="isError" class="error">{{ errorMessage }}</div>
+      </div>
+    <div class="qr-output" *ngIf="qrCodeDataUrl">
+      <canvas #qrCanvas></canvas>
+      <button 
+        class="download-btn"
+        (click)="downloadQRCode()"
+      >
+        Download QR Code
+      </button>
+    </div>
+  </div>
