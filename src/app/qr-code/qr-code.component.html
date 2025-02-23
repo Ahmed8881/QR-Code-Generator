@@ -1,20 +1,55 @@
-<div class="qr-container">
-    <h1>QR Code Generator</h1>
+<div class="app-container" [ngClass]="{'dark-mode': isDarkMode}">
+    <div class="animated-bg"></div>
     
-    <div class="input-section">
-        <input [(ngModel)]="inputText" placeholder="Enter text to generate QR code" />
-        <button (click)="generateQRCode()">Generate QR Code</button>
-        <button (click)="downloadQRCode()" [disabled]="!qrCodeDataUrl">Download QR Code</button>
-        <canvas #qrCanvas></canvas>
-        <div *ngIf="isError" class="error">{{ errorMessage }}</div>
-      </div>
-    <div class="qr-output" *ngIf="qrCodeDataUrl">
-      <canvas #qrCanvas></canvas>
-      <button 
-        class="download-btn"
-        (click)="downloadQRCode()"
-      >
-        Download QR Code
+    <header class="header">
+      <div class="logo">QR Code Generator</div>
+      <button class="theme-toggle" (click)="toggleTheme()">
+        <i class="fas" [ngClass]="isDarkMode ? 'fa-sun' : 'fa-moon'"></i>
       </button>
+    </header>
+  
+    <div class="qr-container">
+      <h1 class="title-animate">QR Code Generator</h1>
+      
+      <div class="input-section">
+        <input 
+          [(ngModel)]="inputText" 
+          placeholder="Enter text to generate QR code"
+          [ngClass]="{'dark-input': isDarkMode}"
+        />
+        <button 
+          class="generate-btn" 
+          (click)="generateQRCode()"
+          [ngClass]="{'dark-button': isDarkMode}"
+        >
+          Generate QR Code
+        </button>
+      </div>
+  
+      <div class="error-message" *ngIf="isError">
+        {{ errorMessage }}
+      </div>
+  
+      <div class="qr-output" *ngIf="qrCodeDataUrl">
+        <canvas #qrCanvas class="canvas-animate"></canvas>
+        <button 
+          class="download-btn"
+          (click)="downloadQRCode()"
+          [ngClass]="{'dark-button': isDarkMode}"
+        >
+          Download QR Code
+        </button>
+      </div>
     </div>
+  
+    <footer class="footer">
+      <p>Created with ❤️ by Ahmed Butt</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+      </div>
+    </footer>
   </div>
+  
+  
