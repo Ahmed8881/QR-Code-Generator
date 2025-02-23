@@ -23,16 +23,16 @@ export class QrCodeComponent implements OnInit {
   ngOnInit() {
     // this.isDarkMode = false
     // Check system preference for dark mode
-    this.isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+    // this.isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
 
     // Listen for system theme changes
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-      this.isDarkMode = e.matches
-    })
+    // window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    //   this.isDarkMode = e.matches
+    // })
   }
 
   toggleTheme() {
-    this.isDarkMode = !this.isDarkMode
+    // this.isDarkMode = !this.isDarkMode
     if (this.qrCodeDataUrl) {
       this.generateQRCode() // Regenerate QR code with new theme colors
     }
@@ -53,10 +53,10 @@ export class QrCodeComponent implements OnInit {
       await QRCode.toCanvas(canvas, this.inputText, {
         width: 300,
         margin: 2,
-        color: {
-          dark: this.isDarkMode ? "#FFFFFF" : "#000000",
-          light: this.isDarkMode ? "#1a1a1a" : "#FFFFFF",
-        },
+        // color: {
+        //   dark: this.isDarkMode ? "#FFFFFF" : "#000000",
+        //   light: this.isDarkMode ? "#1a1a1a" : "#FFFFFF",
+        // },
       })
 
       this.qrCodeDataUrl = canvas.toDataURL()
