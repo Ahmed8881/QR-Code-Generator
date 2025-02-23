@@ -12,22 +12,12 @@
       <h1 class="title-animate">QR Code Generator</h1>
       
       <div class="input-section">
-        <input 
-          [(ngModel)]="inputText" 
-          placeholder="Enter text to generate QR code"
-          [ngClass]="{'dark-input': isDarkMode}"
-        />
-        <button 
-          class="generate-btn" 
-          (click)="generateQRCode()"
-          [ngClass]="{'dark-button': isDarkMode}"
-        >
-          Generate QR Code
-        </button>
-      </div>
-  
-      <div class="error-message" *ngIf="isError">
-        {{ errorMessage }}
+        <input [(ngModel)]="inputText" placeholder="Enter text to generate QR code" />
+        <button    class="generate-btn" 
+        [ngClass]="{'dark-button': isDarkMode}" (click)="generateQRCode()">Generate QR Code</button>
+        <!-- <button (click)="downloadQRCode()" [disabled]="!qrCodeDataUrl">Download QR Code</button> -->
+        <canvas #qrCanvas></canvas>
+        <div *ngIf="isError" class="error">{{ errorMessage }}</div>
       </div>
   
       <div class="qr-output" *ngIf="qrCodeDataUrl">
@@ -43,7 +33,7 @@
     </div>
   
     <footer class="footer">
-      <p>Created with ❤️ by Ahmed Butt</p>
+      <p>Created by Ahmed Butt</p>
       <div class="social-links">
         <a href="#" class="social-link"><i class="fab fa-github"></i></a>
         <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
